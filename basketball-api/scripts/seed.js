@@ -1,4 +1,10 @@
+// All these transactions are happening asynchronously, so we have to order them.
+
+// Remove all our db connections, then seed a player
+
 var async = require('async');
+
+// Why this only works the second time around: It doesn't finish setting up the table before seeding, but the second time, the info is already in our db, so the sync wins out over the seeding.
 
 // require our models, both psql and mongodb
 var models = require('../models/index');
@@ -28,6 +34,9 @@ async.series([
   function(done){
     async.parallel([
       function(done){
+        // nested schema structure
+        // create object literals
+        // when we create this Team, it will check that everything conforms to the standards we've set
         models.Team.create({
           name: 'Cavaliers',
           city: 'Cleveland',
