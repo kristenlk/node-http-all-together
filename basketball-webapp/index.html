@@ -4,7 +4,90 @@
   <title>Fantasy Football</title>
 </head>
 <body>
-  
+
+  <button id="users-index">Show Users</button>
+  <button id="teams-index">Show Teams</button>
+
+  <div id="content"></div>
+
+  <script id="users-template" type="text/x-handlebars-template">
+    <div id='users-list'>
+      {{#each users}}
+        <div data-id={{id}} class="user">
+          <h2>{{firstName}} {{lastName}}</h2>
+          <button class="user-show">See User</button>
+        </div>
+      {{/each}}
+    </div>
+    <form>
+      <h4>Add User</h4>
+      <label> First Name
+        <input id="first-name" type="text"/>
+      </label>
+      <label> Last Name
+        <input id="last-name" type="text"/>
+      </label>
+      <label> Email
+        <input id="email" type="text"/>
+      </label>
+      <button id="new-user">Add User</button>
+    </form>
+  </script>
+
+  <script id="new-user-template" type="x-handlebars-template">
+    <div data-id={{user.id}} class="user">
+      <h2>{{user.firstName}} {{user.lastName}}</h2>
+      <button class="user-show">See User</button>
+    </div>
+  </script>
+
+  <script id="user-show-template" type="x-handlebars-template">
+    <div data-id={{user.id}} id="user-profile">
+      <h2>{{user.firstName}} {{user.lastName}}</h2>
+      <p>{{user.email}}</p>
+      <button class="delete-user">Delete User</button>
+      <button class="show-teams">See Teams</button>
+      <div id="teams"></div>
+    </div>
+  </script>
+
+  <script id="teams-template" type="text/x-handlebars-template">
+    <div id='teams-list'>
+      {{#each teams}}
+        <div data-name={{name}} class="team">
+          <h2>{{city}} {{name}}</h2>
+          <button class="team-show">See Team</button>
+        </div>
+      {{/each}}
+    </div>
+    <form>
+      <h4>Add Team</h4>
+      <label> City
+        <input id="city" type="text"/>
+      </label>
+      <label> Name
+        <input id="team-name" type="text"/>
+      </label>
+      <button id="new-team">Add Team</button>
+    </form>
+  </script>
+
+  <script id="new-team-template" type="x-handlebars-template">
+    <div data-name={{team.name}} class="team">
+      <h2>{{team.city}} {{team.name}}</h2>
+      <button class="team-show">See Team</button>
+    </div>
+  </script>
+
+  <script id="team-show-template" type="x-handlebars-template">
+    <div data-name={{team.name}} id="team-profile">
+      <h2>{{team.city}} {{team.name}}</h2>
+      <button class="delete-team">Delete Team</button>
+      <button class="show-teams">See Teams</button>
+      <div id="teams"></div>
+    </div>
+  </script>
+
   <script src="bower_components/handlebars/handlebars.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="scripts/app.js"></script>

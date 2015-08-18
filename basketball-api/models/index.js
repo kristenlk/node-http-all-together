@@ -26,6 +26,7 @@ var models = {};
 // This function also lets SQL know about the schema.
 
 // Creating our models, set them as values to keys of the same name in our models object
+// .import() handles dependency injection for us
 models.User = sequelize.import('./user');
 models.Ownership = sequelize.import('./ownership');
 models.Team = require('./team')(mongoose, models);
